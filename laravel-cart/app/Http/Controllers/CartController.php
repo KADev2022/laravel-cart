@@ -9,7 +9,6 @@ class CartController extends Controller
 {
     public function cart() 
     {
-        dd(session('cartItems'));
         return view('cart.cart');
     }
 
@@ -28,6 +27,7 @@ class CartController extends Controller
             $cartItems[$id] = [
                 "image_path" => $product->image_path,
                 "name" => $product->name,
+                "brand" => $product->brand,
                 "details" => $product->details,
                 "price" => $product->price,
                 "quantity" => 1
@@ -36,5 +36,20 @@ class CartController extends Controller
 
         session()->put('cartItems', $cartItems);
         return redirect()->back()->with('success', 'Product added to cart!');
+    }
+
+    public function delete(Request $request)
+    {
+        if ($request->id) {
+            $cartItems = session()->get('cartItems');
+
+            // Checks if the requested ID is equal to the Product ID
+            if (isset($cartItems[$request->id])) {
+                unset($cartItems[$request->id]);
+                session()->put('cartItems', $cartItems);
+            }
+
+            return redirect()->back()->with('success', 'Product deleted successfully');
+        }
     }
 }

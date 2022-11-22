@@ -87,9 +87,9 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <select name="quantity" id="quantity" value="{{ $value['quantity'] }}">
+                                <select name="quantity" id="quantity" value="{{ $value['quantity'] }}" onchange="this.form.submit()">
                                     @for ($i = 1; $i <= 10; $i++)
-                                        <option value="{{ $i }}">
+                                        <option value="{{ $i }}" {{ $value['quantity'] == $i ? 'selected' : '' }}>
                                             {{ $i }}
                                         </option>
                                     @endfor

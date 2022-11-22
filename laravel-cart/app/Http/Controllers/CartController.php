@@ -52,4 +52,15 @@ class CartController extends Controller
             return redirect()->back()->with('success', 'Product deleted successfully');
         }
     }
+
+    public function update(Request $request)
+    {
+        if ($request->id && $request->quantity) {
+            $cartItems = session()->get('cartItems');
+            $cartItems[$request->id]['quantity'] = $request->quantity;
+            session()->put('cartItems', $cartItems);
+        }
+
+        return redirect()->back()->with('success', 'Product added to cart!');
+    }
 }

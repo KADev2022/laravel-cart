@@ -111,12 +111,12 @@
                     </tbody>
                     @endforeach
 
-                    @else
-                    <td align="left" colspan="3">
-                        <p class="font-bold text-l text-black py-6 px-4">
-                            Shopping cart is empty.
-                        </p>
-                    </td>
+                @else
+                <td align="left" colspan="3">
+                    <p class="font-bold text-l text-black py-6 px-4">
+                        Shopping cart is empty.
+                    </p>
+                </td>
                 @endif
                 </table>
             </div>
